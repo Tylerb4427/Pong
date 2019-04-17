@@ -48,7 +48,7 @@ public class Block implements Locatable {
     public void draw(Graphics window) {
         //uncomment after you write the set and get methods
         window.setColor(getColor());
-        window.fillRect(getX(), getY(), getWidth(), getHeight());
+        window.fillRect(getxPos(), getyPos(), getWidth(), getHeight());
     }
 
     public void draw(Graphics window, Color col) {
@@ -70,12 +70,12 @@ public class Block implements Locatable {
 
     @Override
     public void setX(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setxPos(x);
     }
 
     @Override
     public void setY(int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setyPos(y);
     }
 
     @Override

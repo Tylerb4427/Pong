@@ -28,22 +28,45 @@ public class Ball extends Block {
         XSpeed = xs;
         YSpeed = ys;
     }
+    
+    public Ball(int x, int y,int w, int h,Color c,int xs,int ys) {
+        super(x, y,w,h,c);
+        XSpeed = xs;
+        YSpeed = ys;
+    }
 
+        public Ball(int x, int y,int w, int h,Color c) {
+        super(x, y,w,h,c);
+        XSpeed = 3;
+        YSpeed = 1;
+    }
     //add the other Ball constructors
     //add the set methods
     public void moveAndDraw(Graphics window) {
         //draw a white ball at old ball location
-
-        setX(getX() + getXSpeed());
-		//setY
-
+        window.setColor(Color.white);
+        window.drawOval(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
+        setxPos(getxPos() + getXSpeed());
+        setyPos(getyPos() + getYSpeed());
+        //draw(window,getColor());
+        window.setColor(super.getColor());
+        window.fillOval(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
         //draw the ball at its new location
     }
 
-    public boolean equals(Object obj) {
+ 
+    public boolean Equals(Object obj) {
         Ball temp = (Ball) obj;
-        return this.getxPos() == temp.getxPos() && this.getyPos() == temp.getyPos() && this.getWidth() == temp.getWidth() && this.getHeight() == temp.getHeight();
+        return super.equals(obj)&&XSpeed==temp.getXSpeed()&&YSpeed==temp.getYSpeed();
+        //return false;
+//return this.getxPos() == temp.getxPos() && this.getyPos() == temp.getyPos() && this.getWidth() == temp.getWidth() && this.getHeight() == temp.getHeight();
 
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
     }
 
    //add the get methods
@@ -62,5 +85,10 @@ public class Ball extends Block {
 
     public void setYSpeed(int ySpeed) {
         this.YSpeed = ySpeed;
+    }
+    
+    @Override
+    public String toString() {
+        return "" + getxPos() + " " + getyPos() + " " + getWidth() + " " + getHeight() + " " + getColor() + " " + getXSpeed()+ " " + getYSpeed();
     }
 }
