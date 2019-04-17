@@ -19,7 +19,7 @@ class BallTestTwo extends Canvas implements Runnable
 	{
 		setBackground(Color.WHITE);
 		setVisible(true);
-                ball = new Ball(100,100,30,50,Color.BLUE,3,1);
+                ball = new Ball(100,100,50,50,Color.BLUE,30,10);
 		//instantiate a new Ball
 
 
@@ -41,12 +41,12 @@ class BallTestTwo extends Canvas implements Runnable
 	{
 		ball.moveAndDraw(window);
 
-		if(!(ball.getxPos()>=10 && ball.getxPos()<=550))
+		if(!(ball.getxPos()>=10 && ball.getxPos()<=800-ball.getWidth()))
 		{
 			ball.setXSpeed(-ball.getXSpeed());
 		}
 
-		if(!(ball.getyPos()>=10 && ball.getyPos()<=450))
+		if(!(ball.getyPos()>=10 && ball.getyPos()<=600-ball.getHeight()))
 		{
 			ball.setYSpeed(-ball.getYSpeed());
 		}
@@ -58,7 +58,7 @@ class BallTestTwo extends Canvas implements Runnable
    	{
    		while(true)
    		{
-   		   Thread.currentThread().sleep(19);
+   		   Thread.currentThread().sleep(10);
             repaint();
          }
       }catch(Exception e)

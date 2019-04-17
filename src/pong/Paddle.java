@@ -38,11 +38,21 @@ public class Paddle extends Block {
 
     //add the other Paddle constructors
     public void moveUpAndDraw(Graphics window) {
-
+        window.setColor(Color.white);
+        window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
+        setyPos(getyPos() + 1);
+        //draw(window,getColor());
+        window.setColor(super.getColor());
+        window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
     }
 
     public void moveDownAndDraw(Graphics window) {
-
+        window.setColor(Color.white);
+        window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
+        setyPos(getyPos() - 1);
+        //draw(window,getColor());
+        window.setColor(super.getColor());
+        window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
     }
 
    //add get methods

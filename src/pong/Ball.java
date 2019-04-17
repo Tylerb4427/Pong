@@ -36,7 +36,7 @@ public class Ball extends Block {
     }
 
         public Ball(int x, int y,int w, int h,Color c) {
-        super(x, y,w,h,c);
+        super(x,y,w,h,c);
         XSpeed = 3;
         YSpeed = 1;
     }
@@ -45,7 +45,7 @@ public class Ball extends Block {
     public void moveAndDraw(Graphics window) {
         //draw a white ball at old ball location
         window.setColor(Color.white);
-        window.drawOval(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
+        window.fillOval(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
         setxPos(getxPos() + getXSpeed());
         setyPos(getyPos() + getYSpeed());
         //draw(window,getColor());
