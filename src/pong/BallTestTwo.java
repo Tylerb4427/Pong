@@ -58,7 +58,7 @@ class BallTestTwo extends Canvas implements Runnable
    	{
    		while(true)
    		{
-   		   Thread.currentThread().sleep(10);
+   		   Thread.currentThread().sleep(17);
             repaint();
          }
       }catch(Exception e)

@@ -40,7 +40,7 @@ public class Paddle extends Block {
     public void moveUpAndDraw(Graphics window) {
         window.setColor(Color.white);
         window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
-        setyPos(getyPos() + 1);
+        setyPos(getyPos() - 1);
         //draw(window,getColor());
         window.setColor(super.getColor());
         window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
@@ -49,7 +49,7 @@ public class Paddle extends Block {
     public void moveDownAndDraw(Graphics window) {
         window.setColor(Color.white);
         window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
-        setyPos(getyPos() - 1);
+        setyPos(getyPos() + 1);
         //draw(window,getColor());
         window.setColor(super.getColor());
         window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());

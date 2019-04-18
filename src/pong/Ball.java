@@ -87,6 +87,14 @@ public class Ball extends Block {
         this.YSpeed = ySpeed;
     }
     
+    public boolean collidesX(Paddle paddle){
+        if(this.getyPos()>paddle.getyPos()-this.getHeight()&&this.getyPos()<paddle.getyPos()+paddle.getHeight()){//check y
+            if(this.getXSpeed()<0&&this.getxPos()<paddle.getyPos()+paddle.getWidth())
+                return true;
+        }
+        return false;
+    }
+    
     @Override
     public String toString() {
         return "" + getxPos() + " " + getyPos() + " " + getWidth() + " " + getHeight() + " " + getColor() + " " + getXSpeed()+ " " + getYSpeed();
