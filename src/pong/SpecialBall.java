@@ -1,3 +1,4 @@
+
 package pong;
 
 //(c) A+ Computer Science
@@ -6,36 +7,37 @@ package pong;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block {
+public class SpecialBall extends Block {
 
     private int XSpeed;
+    private boolean shown=true;
     private int YSpeed;
 
-    public Ball() {
+    public SpecialBall() {
         super(200, 200);
         XSpeed = 3;
         YSpeed = 1;
     }
 
-    public Ball(int x, int y) {
+    public SpecialBall(int x, int y) {
         super(x, y);
         XSpeed = 3;
         YSpeed = 1;
     }
 
-    public Ball(int x, int y,int xs,int ys) {
+    public SpecialBall(int x, int y,int xs,int ys) {
         super(x, y);
         XSpeed = xs;
         YSpeed = ys;
     }
     
-    public Ball(int x, int y,int w, int h,Color c,int xs,int ys) {
+    public SpecialBall(int x, int y,int w, int h,Color c,int xs,int ys) {
         super(x, y,w,h,c);
         XSpeed = xs;
         YSpeed = ys;
     }
 
-        public Ball(int x, int y,int w, int h,Color c) {
+        public SpecialBall(int x, int y,int w, int h,Color c) {
         super(x,y,w,h,c);
         XSpeed = 3;
         YSpeed = 1;
@@ -49,6 +51,7 @@ public class Ball extends Block {
         setxPos(getxPos() + getXSpeed());
         setyPos(getyPos() + getYSpeed());
         //draw(window,getColor());
+        if(shown)
         window.setColor(super.getColor());
         window.fillRect(super.getxPos(),super.getyPos(),super.getWidth(),super.getHeight());
         //draw the ball at its new location
@@ -85,6 +88,14 @@ public class Ball extends Block {
 
     public void setYSpeed(int ySpeed) {
         this.YSpeed = ySpeed;
+    }
+    
+    public void speedUp(){
+        XSpeed++;
+    }
+    
+    public void toggle(){
+        shown=!shown;
     }
     
     public boolean collidesLeft(Paddle paddle){

@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -16,18 +17,20 @@ import java.awt.event.ActionListener;
 
 public class Pong extends Canvas implements KeyListener, Runnable {
 
-    private Ball ball;
+    private SpecialBall ball;
     private Paddle leftPaddle;
     private Paddle rightPaddle;
     private boolean[] keys;		//keeps track of what keys are pressed
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-
+    private int lscore = 0, rscore = 0;
+    private int ltemp = lscore, rtemp = rscore;
+    private int time =0;
     public Pong() {
         //set up all game variables
-        ball = new Ball(100, 100, 30, 30, Color.BLUE, 1, 1);
-        leftPaddle = new Paddle(100, 100, 3, 70, Color.BLUE, 1);
-        rightPaddle = new Paddle(700, 100, 3, 70, Color.BLUE, 1);
+        ball = new SpecialBall(100, 100, 30, 30, Color.BLUE, 1, 2);
+        leftPaddle = new Paddle(100, 100, 10, 100, Color.BLUE, 2);
+        rightPaddle = new Paddle(700, 100, 10, 100, Color.RED, 2);
 		//instantiate a Ball
 
         //instantiate a left Paddle
@@ -47,24 +50,61 @@ public class Pong extends Canvas implements KeyListener, Runnable {
     }
 
     public void paint(Graphics window) {
+        time++;
+//        if (rightPaddle.getyPos() > ball.getyPos()) {
+//            rightPaddle.moveUpAndDraw(window);
+//        } else {
+//            rightPaddle.moveDownAndDraw(window);
+//        }
+//        if (leftPaddle.getyPos() > ball.getyPos()) {
+//            leftPaddle.moveUpAndDraw(window);
+//        } else {
+//            leftPaddle.moveDownAndDraw(window);
+//        }
+
+//        leftPaddle.setyPos(ball.getyPos());
+        window.setColor(Color.white);
+        window.fillRect(0, 0, WIDTH, 101);
+        window.setColor(Color.blue);
+        Font font = new Font("Helvetica", Font.PLAIN, 72);
+        window.setFont(font);
+        window.drawString("" + lscore, 100, 100);
+        window.setFont(font);
+        window.setColor(Color.red);
+        window.drawString("" + rscore, HEIGHT - 100, 100);
+//        if(time==1){
+//            time=0;
+//            ball.toggle();
+//        }
         ball.moveAndDraw(window);
         leftPaddle.draw(window);
         rightPaddle.draw(window);
-        
-        if (ball.collidesX(leftPaddle)) {
-            ball.setXSpeed(0);
-            ball.setYSpeed(0);
-        }
 
-        if (!(ball.getxPos() >= 10 && ball.getxPos() <= 550)) {
+        if (ball.collidesLeft(leftPaddle)) {
+            ball.speedUp();
+            ball.setXSpeed(-ball.getXSpeed());
+        }
+        if (ball.collidesRight(rightPaddle)) {
+            ball.speedUp();
             ball.setXSpeed(-ball.getXSpeed());
         }
 
-        if (!(ball.getyPos() >= 10 && ball.getyPos() <= 450)) {
+        if (ball.getxPos() <= 0) {
+            ball.speedUp();
+            ball.setXSpeed(Math.abs(ball.getXSpeed()));
+            rscore++;
+        }
+        if (ball.getxPos() >= WIDTH - ball.getWidth()) {
+            ball.speedUp();
+            ball.setXSpeed(-Math.abs(ball.getXSpeed()));
+            lscore++;
+        }
+
+        if (!(ball.getyPos() >= 0 && ball.getyPos() <= HEIGHT - ball.getHeight())) {
+            ball.speedUp();
             ball.setYSpeed(-ball.getYSpeed());
         }
 
-        
         if (keys[0] == true) {
             //move left paddle up and draw it on the window
             if (leftPaddle.getyPos() > 0) {
